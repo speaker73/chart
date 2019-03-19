@@ -49,15 +49,32 @@ export default class Chart extends Container {
 		const maxX = endX? endX - startX : Math.max.apply(null, xColumn) - startX;
 		const maxY = Math.max.apply(null, yColumn);
 		const kx = this.cWidth/maxX;
+		this.kx = kx;
 		const ky = this.cHeight/maxY;
 		const yZero = this.cHeight;
 
-		graphics.moveTo(0, yZero);
-		xColumn.slice(1).forEach((xSrc, id) =>{
+		xColumn.forEach((xSrc, id) =>{
+			
 			const y = yZero - (yColumn[id + 1] * ky);
 			const x = (xSrc - startX) * kx;
-	
+			if(!id){
+				graphics.moveTo(x, y);
+			}
 			graphics.lineTo(x, y)
 		})
+	}
+	render({startDot, endDot, width, height}){
+		if(typeof startDot === 'number')
+			this.startDot = startDot;
+		if(typeof endDot === 'number')
+			this.endDot = endDot;
+		if(typeof width === 'number')
+			this.cWidth = width;
+		if(typeof height === 'number')
+			this.cHeight = height;
+		
+		this.graphics.clear();
+		this.drawChart();
+	
 	}
 }
