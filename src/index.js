@@ -23,7 +23,8 @@ document.body.appendChild(app.view);
 let startDot = 100,
 	endDot = width*0.2;
 
-app.stage.chartBig = new Chart({width, height:height*0.7,lineHeight:3, data:chartData[0], startDot, endDot});
+app.stage.chartBig = new Chart({width:width*(width/(endDot-startDot)), height:height*0.7,lineHeight:3, data:chartData[0], startDot, endDot});
+app.stage.chartBig.render({startDot, endDot, width:width*(width/(endDot-startDot)), height:height*0.7});
 app.stage.chart = new Chart({width, height:height* 0.1,lineHeight:1.6, data:chartData[0]});
 
 app.stage.rect = new Graphics();
@@ -55,7 +56,7 @@ function render(){
 	const width = window.innerWidth;
 	const height = window.innerHeight;
 
-	app.stage.chartBig.render({startDot, endDot, width, height:height*0.7});
+	app.stage.chartBig.render({startDot, endDot, width:width*(width/(endDot-startDot)), height:height*0.7});
 	app.stage.chart.render({width, height:height* 0.1});
 	app.stage.chart.y = height * 0.8;
 
