@@ -38,7 +38,7 @@ export default class Chart extends Container {
 		this.kx = kx;
 		const ky = this.cHeight/maxY;
 		const yZero = this.cHeight;
-		graphics.moveTo(0, yColumn[0]*ky);
+		graphics.moveTo(0, yZero - (yColumn[0] * ky));
 		xColumn.slice(1).forEach((xSrc, id) =>{
 			
 			const y = yZero - (yColumn[id+1] * ky);

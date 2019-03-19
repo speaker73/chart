@@ -19,13 +19,13 @@ const options = {
 
 const app = new Application(width, height, options);
 document.body.appendChild(app.view);
-
+const data = chartData[4];
 let startDot = 100,
 	endDot = width*0.2;
 
-app.stage.chartBig = new Chart({width:width*(width/(endDot-startDot)), height:height*0.7,lineHeight:3, data:chartData[0], startDot, endDot});
+app.stage.chartBig = new Chart({width:width*(width/(endDot-startDot)), height:height*0.7,lineHeight:3, data, startDot, endDot});
 app.stage.chartBig.render({startDot, endDot, width:width*(width/(endDot-startDot)), height:height*0.7});
-app.stage.chart = new Chart({width, height:height* 0.1,lineHeight:1.6, data:chartData[0]});
+app.stage.chart = new Chart({width, height:height* 0.1,lineHeight:1.6, data});
 
 app.stage.rect = new Graphics();
 app.stage.rect.beginFill(0xFFFFFF, 0.5);
