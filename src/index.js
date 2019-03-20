@@ -122,32 +122,42 @@ function onDragMove(event)
         const width = endDot - startDot;
         const deltaX = event.data.global.x - this.startX;
   		let x = startDot + deltaX;
-		if(x < 0 ){
-			x = 0;
-		}
-		if((x + width) > window.innerWidth){
-			x = window.innerWidth - width;
-		}
-
-		if( (this.startX - startDot) <=5 && (this.startX - startDot >= 0) ) {
-			dragLeft(x);
-		}else if( (endDot - this.startX) <=5 && (endDot - this.startX >= 0) ){
-			dragRight(x, width);
+		const isDragLeft = (this.startX - startDot) <=5 && (this.startX - startDot >= 0);
+		if( (this.startX - startDot) <=5 && ((this.startX - startDot) >= 0) ) {
+			if( (endDot - x) >= 100 ) {
+				dragLeft(x);
+				this.startX = event.data.global.x;
+			}
+		}else if( (endDot - this.startX) <=5 && ((endDot - this.startX) >= 0) ){
+			if( ((x + width) - startDot) >= 100 ){
+				dragRight(x, width);
+				this.startX = event.data.global.x;
+			}
 		}else{
+			if(x < 0 ){
+				x = 0;
+			}
+			if((x + width) > window.innerWidth){
+				x = window.innerWidth - width;
+			}
 			move(x, width);
+			this.startX = event.data.global.x;
 		}
 	
-		this.startX = event.data.global.x;
 		render();
     }
 }
 
 function dragLeft(x){
-	startDot = x;
+	if( (endDot - x) >= 100 ) {
+		startDot = x;
+	}	
 }
 
 function dragRight(x, width){
-	endDot = x + width;
+	if( ((x + width) - startDot) >= 100 ){
+		endDot = x + width;
+	}
 }
 
 function move(x, width){

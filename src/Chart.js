@@ -12,7 +12,7 @@ export default class Chart extends Container {
 		this.cHeight = height;
 		this.chartData = data;
 		this.lineHeight = lineHeight || 2;
-		this.graphics = new Graphics();
+		this.graphics = new Graphics(true);
 		this.startDot = startDot;
 		this.endDot = endDot;
 		this.drawChart();
