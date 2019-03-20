@@ -149,15 +149,11 @@ function onDragMove(event)
 }
 
 function dragLeft(x){
-	if( (endDot - x) >= 100 ) {
-		startDot = x;
-	}	
+	startDot = x;	
 }
 
 function dragRight(x, width){
-	if( ((x + width) - startDot) >= 100 ){
-		endDot = x + width;
-	}
+	endDot = x + width;
 }
 
 function move(x, width){
