@@ -128,11 +128,29 @@ function onDragMove(event)
 		if((x + width) > window.innerWidth){
 			x = window.innerWidth - width;
 		}
+
+		if( (this.startX - startDot) <=5 && (this.startX - startDot >= 0) ) {
+			dragLeft(x);
+		}else if( (endDot - this.startX) <=5 && (endDot - this.startX >= 0) ){
+			dragRight(x, width);
+		}else{
+			move(x, width);
+		}
+	
 		this.startX = event.data.global.x;
-		startDot = x;
-		endDot = x + width;
 		render();
     }
 }
 
+function dragLeft(x){
+	startDot = x;
+}
 
+function dragRight(x, width){
+	endDot = x + width;
+}
+
+function move(x, width){
+	startDot = x;
+	endDot = x + width;
+}
